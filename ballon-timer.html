@@ -55,12 +55,24 @@
       margin-left: -100%;
     }
 
-    #balloon {
+    #treasure {
       transform-origin: 50% 15%;
       animation: wobble 3s ease-in-out 0s alternate infinite;
       display: inline-block;
 
       font-size: 15rem;
+    }
+
+    #balloon.yellow {
+      filter: hue-rotate(58deg) saturate(1500%);
+    }
+
+    #balloon.blue {
+      filter: hue-rotate(237deg) saturate(500%);
+    }
+
+    #balloon.green {
+      filter: hue-rotate(120deg);
     }
 
     @keyframes wobble {
@@ -88,7 +100,7 @@
 </head>
 <body>
   <div id="wind">
-    <span id='balloon'>🎈<br>🎁</span>
+    <span id='treasure'><span id="balloon">🎈</span><br>🎁</span>
   </div>
   <div id='dateTime'>
     <span id="time"></span>
