@@ -86,7 +86,7 @@
 
     @keyframes fly {
       from {
-        margin-left: -140%
+        margin-left: -560%;
       }
       to {
         margin-left: 120%;
@@ -94,7 +94,7 @@
     }
 
     .flying {
-      animation: fly 120s linear;
+      animation: fly 300s linear infinite;
     }
   </style>
 </head>
@@ -121,6 +121,24 @@
     const months = 'January February March April May June July August September October November December'.split(' ');
     const days = 'Sun Mon Tue Wed Thu Fri Sat'.split(' ');
 
+    const nextFiveMinuteBoundary = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      new Date().getDate(),
+      new Date().getHours(),
+      (Math.floor((new Date().getMinutes() + 1) / 5) + 1) * 5 + 1);
+    const msUntilStart = +nextFiveMinuteBoundary - Date.now();
+    console.log('Next five minute boundary', nextFiveMinuteBoundary, 'in', msUntilStart, 'ms');
+    console.table({
+      now: new Date().toString(),
+      nextBoundary: nextFiveMinuteBoundary.toString(),
+      msUntilStart
+    });
+    setTimeout(() => {
+      console.log('animation started');
+      windView.classList.add('flying');
+    }, msUntilStart);
+
     setInterval(() => {
       const currentTime = new Date();
       const [time, halfOfDay] = currentTime.toLocaleTimeString().split(' ');
@@ -129,13 +147,6 @@
       halfOfDayView.innerText = halfOfDay;
       dateView.innerText = `${months[currentTime.getMonth()]} ${currentTime.getDate()}`;
       dayOfWeekView.innerText = `${days[currentTime.getDay()]}.`;
-
-      const minuteOfCycle = currentTime.getMinutes() % 5;
-      if (minuteOfCycle === 4) {
-        windView.classList.add("flying");
-      } else if (0 < minuteOfCycle && minuteOfCycle < 4) {
-        windView.classList.remove("flying");
-      }
     }, 200);
   </script>
 </body>
