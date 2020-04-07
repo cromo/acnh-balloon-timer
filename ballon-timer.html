@@ -111,13 +111,13 @@
 
     setInterval(() => {
       const currentTime = new Date();
-      // timeView.innerText = currentTime.toLocaleTimeString();
       const [time, halfOfDay] = currentTime.toLocaleTimeString().split(' ');
-      // dateTimeView.innerHTML =`<span>${time}</span><span>${halfOfDay}</span>`;
+
       timeView.innerText = time;
       halfOfDayView.innerText = halfOfDay;
       dateView.innerText = `${months[currentTime.getMonth()]} ${currentTime.getDate()}`;
       dayOfWeekView.innerText = `${days[currentTime.getDay()]}.`;
+
       const minuteOfCycle = currentTime.getMinutes() % 5;
       if (minuteOfCycle === 4) {
         windView.classList.add("flying");
