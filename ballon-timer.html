@@ -128,14 +128,7 @@
       new Date().getHours(),
       (Math.floor((new Date().getMinutes() + 1) / 5) + 1) * 5 + 1);
     const msUntilStart = +nextFiveMinuteBoundary - Date.now();
-    console.log('Next five minute boundary', nextFiveMinuteBoundary, 'in', msUntilStart, 'ms');
-    console.table({
-      now: new Date().toString(),
-      nextBoundary: nextFiveMinuteBoundary.toString(),
-      msUntilStart
-    });
     setTimeout(() => {
-      console.log('animation started');
       windView.classList.add('flying');
     }, msUntilStart);
 
